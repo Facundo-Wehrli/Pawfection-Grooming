@@ -30,7 +30,7 @@ public class UploadData extends javax.swing.JFrame {
 
         jTextField20 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        title = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -55,8 +55,8 @@ public class UploadData extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setText("Upload Data");
+        title.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        title.setText("Upload Data");
 
         jLabel2.setText("Client N°:");
 
@@ -75,6 +75,12 @@ public class UploadData extends javax.swing.JFrame {
         jLabel9.setText("Owner phone number:");
 
         jLabel10.setText("Observations");
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
 
         cmbAllergic.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "yes", "no" }));
 
@@ -162,6 +168,11 @@ public class UploadData extends javax.swing.JFrame {
         btnSave.setText("SAVE");
 
         btnClean.setText("CLEAN");
+        btnClean.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCleanActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -177,14 +188,14 @@ public class UploadData extends javax.swing.JFrame {
                         .addComponent(btnClean, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(125, 125, 125)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1))
+                    .addComponent(title))
                 .addGap(299, 299, 299))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel1)
+                .addComponent(title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
@@ -212,12 +223,28 @@ public class UploadData extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
+        // TODO add your handling code here:
+        txtClientNumber.setText("");
+        txtName.setText("");
+        txtBreed.setText("");
+        txtColor.setText("");
+        txtObservations.setText("");
+        txtOwnerName.setText("");
+        txtOwnerPhoneNumber.setText("");
+        cmbAllergic.setSelectedIndex(0);
+        cmbSpecialAttention.setSelectedIndex(0);
+    }//GEN-LAST:event_btnCleanActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClean;
     private javax.swing.JButton btnSave;
     private javax.swing.JComboBox<String> cmbAllergic;
     private javax.swing.JComboBox<String> cmbSpecialAttention;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -230,6 +257,7 @@ public class UploadData extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField20;
+    private javax.swing.JLabel title;
     private javax.swing.JTextField txtBreed;
     private javax.swing.JTextField txtClientNumber;
     private javax.swing.JTextField txtColor;
