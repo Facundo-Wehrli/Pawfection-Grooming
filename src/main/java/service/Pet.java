@@ -1,7 +1,16 @@
 package service;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Pet {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int client_number;
     private String dog_name;
     private String breed;
@@ -9,6 +18,7 @@ public class Pet {
     private String allergic;
     private String special_attention;
 
+    @OneToOne
     private Owner owner;
 
     public Pet() {
