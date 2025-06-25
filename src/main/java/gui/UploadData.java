@@ -1,15 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package gui;
 
-/**
- *
- * @author Facu
- */
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import service.Controller;
+
 public class UploadData extends javax.swing.JFrame {
 
+    Controller control = new Controller();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UploadData.class.getName());
 
     /**
@@ -166,6 +163,11 @@ public class UploadData extends javax.swing.JFrame {
         );
 
         btnSave.setText("SAVE");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnClean.setText("CLEAN");
         btnClean.addActionListener(new java.awt.event.ActionListener() {
@@ -239,6 +241,27 @@ public class UploadData extends javax.swing.JFrame {
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        String petName = txtName.getText();
+        String breed = txtBreed.getText();
+        String color = txtColor.getText();
+        String observations = txtObservations.getText();
+
+        String ownerName = txtOwnerName.getText();
+        String ownerPhoneNumber = txtOwnerPhoneNumber.getText();
+
+        String allergic = (String) cmbAllergic.getSelectedItem();
+        String specialAttention = (String) cmbSpecialAttention.getSelectedItem();
+
+        control.save(petName, breed, color, observations, ownerName, ownerPhoneNumber, allergic, specialAttention);
+
+        JOptionPane optionPane = new JOptionPane("saved");
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog("successfully saved");
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClean;
