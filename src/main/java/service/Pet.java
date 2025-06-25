@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import java.io.Serializable;
 
-
 @Entity
 public class Pet implements Serializable {
 
@@ -19,6 +18,7 @@ public class Pet implements Serializable {
     private String color;
     private String allergic;
     private String special_attention;
+    private String observations;
 
     @OneToOne
     private Owner owner;
@@ -26,7 +26,7 @@ public class Pet implements Serializable {
     public Pet() {
     }
 
-    public Pet(int client_number, String dog_name, String breed, String color, String allergic, String special_attention, Owner owner) {
+    public Pet(int client_number, String dog_name, String breed, String color, String allergic, String special_attention, String observations, Owner owner) {
         this.client_number = client_number;
         this.dog_name = dog_name;
         this.breed = breed;
@@ -34,10 +34,19 @@ public class Pet implements Serializable {
         this.allergic = allergic;
         this.special_attention = special_attention;
         this.owner = owner;
+        this.observations = observations;
     }
 
     public int getClient_number() {
         return client_number;
+    }
+
+    public String getObservations() {
+        return observations;
+    }
+
+    public void setObservations(String observations) {
+        this.observations = observations;
     }
 
     public void setClient_number(int client_number) {
