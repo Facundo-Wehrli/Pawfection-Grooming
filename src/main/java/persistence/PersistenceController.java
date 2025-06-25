@@ -1,13 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package persistence;
 
-/**
- *
- * @author Facu
- */
+import service.Owner;
+import service.Pet;
+
 public class PersistenceController {
-    
+
+    OwnerJpaController ownerJpa = new OwnerJpaController();
+    PetJpaController petJpa = new PetJpaController();
+
+    public void save(Owner owner, Pet pet) {
+        //crete the owner in bd
+        ownerJpa.create(owner);
+        //create the pet in bd
+        petJpa.create(pet);
+    }
+
 }

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package persistence;
 
 import jakarta.persistence.EntityManager;
@@ -9,6 +5,7 @@ import jakarta.persistence.EntityManagerFactory;
 import java.io.Serializable;
 import jakarta.persistence.Query;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 import java.util.List;
@@ -24,7 +21,12 @@ public class OwnerJpaController implements Serializable {
     public OwnerJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+
     private EntityManagerFactory emf = null;
+
+    public OwnerJpaController() {
+        emf = Persistence.createEntityManagerFactory("DogGroomingSalonPU");
+    }
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
@@ -133,5 +135,5 @@ public class OwnerJpaController implements Serializable {
             em.close();
         }
     }
-    
+
 }
