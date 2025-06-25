@@ -1,13 +1,27 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package service;
 
-/**
- *
- * @author Facu
- */
+import persistence.PersistenceController;
+
 public class Controller {
-    
+
+    PersistenceController controlPersis = new PersistenceController();
+
+    public void save(String petName, String breed, String color, String observations, String ownerName, String ownerPhoneNumber, String allergic, String specialAttention) {
+        //create owner and asign values
+        Owner owner = new Owner();
+        owner.setName(ownerName);
+        owner.setPhone_nomber(ownerPhoneNumber);
+        //create pet and asign values
+        Pet pet = new Pet();
+        pet.setDog_name(petName);
+        pet.setBreed(breed);
+        pet.setColor(color);
+        pet.setAllergic(allergic);
+        pet.setSpecial_attention(specialAttention);
+        pet.setObservations(observations);
+        pet.setOwner(owner);
+        
+        controlPersis.save(owner, pet);
+    }
+
 }
