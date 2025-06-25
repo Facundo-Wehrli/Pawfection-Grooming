@@ -1,10 +1,13 @@
 package com.mycompany.doggroomingsalon;
 
+import gui.First;
+
 public class Doggroomingsalon {
 
     public static void main(String[] args) {
-        //TODO add project to github
-        //start the project
-        //Pawfection Grooming 
+        First first = new First();
+
+        first.setVisible(true);
+        first.setLocationRelativeTo(null);
     }
-}   
+}
