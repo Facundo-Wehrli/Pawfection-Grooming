@@ -9,5 +9,6 @@ public class Doggroomingsalon {
 
         first.setVisible(true);
         first.setLocationRelativeTo(null);
+
     }
 }
