@@ -1,5 +1,6 @@
 package persistence;
 
+import java.util.List;
 import service.Owner;
 import service.Pet;
 
@@ -13,6 +14,10 @@ public class PersistenceController {
         ownerJpa.create(owner);
         //create the pet in bd
         petJpa.create(pet);
+    }
+
+    public List<Pet> getPets() {
+        return petJpa.findPetEntities();
     }
 
 }

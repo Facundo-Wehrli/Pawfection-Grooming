@@ -1,5 +1,6 @@
 package service;
 
+import java.util.List;
 import persistence.PersistenceController;
 
 public class Controller {
@@ -22,6 +23,10 @@ public class Controller {
         pet.setOwner(owner);
         
         controlPersis.save(owner, pet);
+    }
+
+    public List<Pet> getPets() {
+        return controlPersis.getPets();
     }
 
 }
