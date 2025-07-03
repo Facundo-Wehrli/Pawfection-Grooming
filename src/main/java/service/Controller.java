@@ -29,4 +29,8 @@ public class Controller {
         return controlPersis.getPets();
     }
 
+    public void deletePet(int num_client) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

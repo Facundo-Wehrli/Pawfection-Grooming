@@ -1,22 +1,24 @@
+
 package gui;
 
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import service.Controller;
 import service.Pet;
 
-public class viewData extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(viewData.class.getName());
-    
-    Controller controller = null;
 
+public class viewData extends javax.swing.JFrame {
+
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(viewData.class.getName());
+
+    Controller controller = null;
 
     public viewData() {
         controller = new Controller();
         initComponents();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -60,6 +62,11 @@ public class viewData extends javax.swing.JFrame {
         jLabel2.setText("Pet Information");
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setText("Update");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +154,38 @@ public class viewData extends javax.swing.JFrame {
         uploadTable();
     }//GEN-LAST:event_formWindowOpened
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        //check if table is empty 
+        if (petTable.getRowCount() > 0) {
+            if (petTable.getSelectedRow() != -1) {
+                int num_client = Integer.parseInt(String.valueOf(petTable.getValueAt(petTable.getSelectedRow(), 0)));
+
+                //calling deletePet at Controller class in service layer
+                controller.deletePet(num_client);
+
+                showMessage("Pet deleted succesfully", "Info", "Pet Delete");
+            } else {
+                showMessage("Pet not selected", "Error", "Delete Error");
+            }
+        } else {
+            showMessage("Nothing to delete on table", "Error", "Delete Error");
+        }
+
+   
+    }//GEN-LAST:event_btnDeleteActionPerformed
+   
+
+    public void showMessage(String message, String type, String title) {
+    JOptionPane optionPane = new JOptionPane(message);
+    if (type.equals("Info")) {
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+    } else if (type.equals("Error")) {
+        optionPane.setMessageType(JOptionPane.ERROR);
+    }
+    JDialog dialog = optionPane.createDialog(title);
+    dialog.setAlwaysOnTop(true);
+    dialog.setVisible(true);
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -179,13 +218,13 @@ public class viewData extends javax.swing.JFrame {
         //iterate over the list and show each table element
         if (petList != null) {
             for (Pet pet : petList) {
-                Object[] object = {pet.getClient_number(), pet.getDog_name(), pet.getColor(), pet.getBreed(),pet.getAllergic(), pet.getSpecial_attention(), pet.getOwner().getName(), pet.getOwner().getPhone_nomber()
+                Object[] object = {pet.getClient_number(), pet.getDog_name(), pet.getColor(), pet.getBreed(), pet.getAllergic(), pet.getSpecial_attention(), pet.getOwner().getName(), pet.getOwner().getPhone_nomber()
                 };
                 modelTable.addRow(object);
             }
         }
-        
+
         petTable.setModel(modelTable);
-        
+         }
     }
-}
+
