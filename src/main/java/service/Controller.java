@@ -30,7 +30,7 @@ public class Controller {
     }
 
     public void deletePet(int num_client) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        controlPersis.deletePet(num_client);
     }
 
 }

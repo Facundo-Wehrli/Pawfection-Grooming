@@ -1,6 +1,7 @@
 package persistence;
 
 import java.util.List;
+import persistence.exceptions.NonexistentEntityException;
 import service.Owner;
 import service.Pet;
 
@@ -18,6 +19,14 @@ public class PersistenceController {
 
     public List<Pet> getPets() {
         return petJpa.findPetEntities();
+    }
+
+    public void deletePet(int num_client) {
+        try {
+            petJpa.destroy(num_client);
+        } catch (NonexistentEntityException ex) {
+            System.getLogger(PersistenceController.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
     }
 
 }

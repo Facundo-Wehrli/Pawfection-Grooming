@@ -162,8 +162,10 @@ public class viewData extends javax.swing.JFrame {
 
                 //calling deletePet at Controller class in service layer
                 controller.deletePet(num_client);
-
+                //delete record message
                 showMessage("Pet deleted succesfully", "Info", "Pet Delete");
+                //upload table in gui when record is deleted
+                uploadTable();
             } else {
                 showMessage("Pet not selected", "Error", "Delete Error");
             }
@@ -180,7 +182,7 @@ public class viewData extends javax.swing.JFrame {
     if (type.equals("Info")) {
         optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
     } else if (type.equals("Error")) {
-        optionPane.setMessageType(JOptionPane.ERROR);
+        optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
     }
     JDialog dialog = optionPane.createDialog(title);
     dialog.setAlwaysOnTop(true);
