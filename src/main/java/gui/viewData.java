@@ -166,9 +166,11 @@ public class viewData extends javax.swing.JFrame {
                 showMessage("Pet deleted succesfully", "Info", "Pet Delete");
                 //upload table in gui when record is deleted
                 uploadTable();
+                //message when hitting delete button but no record is selected
             } else {
                 showMessage("Pet not selected", "Error", "Delete Error");
-            }
+            } 
+            //message when hitting delete button but there's no records on the table
         } else {
             showMessage("Nothing to delete on table", "Error", "Delete Error");
         }
