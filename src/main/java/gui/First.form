@@ -98,18 +98,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnClose" min="-2" pref="165" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="btnViewData" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                                  <Component id="btnUploadData" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="29" pref="154" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="btnClose" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                          <Component id="btnViewData" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
+                          <Component id="btnUploadData" alignment="0" min="-2" pref="165" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace pref="154" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
