@@ -1,4 +1,3 @@
-
 package gui;
 
 import java.util.List;
@@ -8,14 +7,13 @@ import javax.swing.table.DefaultTableModel;
 import service.Controller;
 import service.Pet;
 
+public class ViewData extends javax.swing.JFrame {
 
-public class viewData extends javax.swing.JFrame {
-
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(viewData.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ViewData.class.getName());
 
     Controller controller = null;
 
-    public viewData() {
+    public ViewData() {
         controller = new Controller();
         initComponents();
     }
@@ -31,7 +29,7 @@ public class viewData extends javax.swing.JFrame {
         petTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
+        btnEdit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -68,10 +66,10 @@ public class viewData extends javax.swing.JFrame {
             }
         });
 
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
+                btnEditActionPerformed(evt);
             }
         });
 
@@ -87,7 +85,7 @@ public class viewData extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 623, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
+                    .addComponent(btnEdit, javax.swing.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -104,7 +102,7 @@ public class viewData extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(128, Short.MAX_VALUE))
         );
 
@@ -145,9 +143,25 @@ public class viewData extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdateActionPerformed
+        if (petTable.getRowCount() > 0) {
+            if (petTable.getSelectedRow() != -1) {
+                int num_client = Integer.parseInt(String.valueOf(petTable.getValueAt(petTable.getSelectedRow(), 0)));
+                ModifyData screenModify = new ModifyData(num_client);
+                screenModify.setVisible(true);
+                screenModify.setLocationRelativeTo(null);
+                this.dispose();
+
+            } else {
+                showMessage("Pet not selected", "Error", "Delete Error");
+            }
+            //message when hitting delete button but there's no records on the table
+        } else {
+            showMessage("Nothing to delete on table", "Error", "Delete Error");
+        }
+
+    }//GEN-LAST:event_btnEditActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
@@ -169,31 +183,30 @@ public class viewData extends javax.swing.JFrame {
                 //message when hitting delete button but no record is selected
             } else {
                 showMessage("Pet not selected", "Error", "Delete Error");
-            } 
+            }
             //message when hitting delete button but there's no records on the table
         } else {
             showMessage("Nothing to delete on table", "Error", "Delete Error");
         }
 
-   
+
     }//GEN-LAST:event_btnDeleteActionPerformed
-   
 
     public void showMessage(String message, String type, String title) {
-    JOptionPane optionPane = new JOptionPane(message);
-    if (type.equals("Info")) {
-        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-    } else if (type.equals("Error")) {
-        optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        JOptionPane optionPane = new JOptionPane(message);
+        if (type.equals("Info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (type.equals("Error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(title);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
     }
-    JDialog dialog = optionPane.createDialog(title);
-    dialog.setAlwaysOnTop(true);
-    dialog.setVisible(true);
-}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnUpdate;
+    private javax.swing.JButton btnEdit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -229,6 +242,5 @@ public class viewData extends javax.swing.JFrame {
         }
 
         petTable.setModel(modelTable);
-         }
     }
-
+}
