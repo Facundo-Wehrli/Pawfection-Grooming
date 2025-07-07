@@ -3,17 +3,24 @@ package gui;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import service.Controller;
+import service.Pet;
 
-public class UploadData extends javax.swing.JFrame {
+public class ModifyData extends javax.swing.JFrame {
 
-    Controller control = new Controller();
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(UploadData.class.getName());
+    Controller control = null;
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ModifyData.class.getName());
 
     /**
      * Creates new form UploadData
      */
-    public UploadData() {
+    int num_client;
+    Pet pet;
+
+    public ModifyData(int num_client) {
+        control = new Controller();
+        // this.num_client = num_client;
         initComponents();
+        uploadData(num_client);
     }
 
     /**
@@ -29,7 +36,6 @@ public class UploadData extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         title = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -38,7 +44,6 @@ public class UploadData extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtClientNumber = new javax.swing.JTextField();
         txtObservations = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         txtBreed = new javax.swing.JTextField();
@@ -54,9 +59,7 @@ public class UploadData extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         title.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        title.setText("Upload Data");
-
-        jLabel2.setText("Client N°:");
+        title.setText("Edit Data");
 
         jLabel3.setText("Name:");
 
@@ -91,24 +94,21 @@ public class UploadData extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtClientNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel2)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel8))
-                                .addGap(77, 77, 77)
-                                .addComponent(txtObservations, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel9)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel5)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel8))
+                            .addGap(77, 77, 77)
+                            .addComponent(txtObservations, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(115, 115, 115)
@@ -124,11 +124,7 @@ public class UploadData extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtClientNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -163,7 +159,7 @@ public class UploadData extends javax.swing.JFrame {
                 .addGap(0, 9, Short.MAX_VALUE))
         );
 
-        btnSave.setText("SAVE");
+        btnSave.setText("SAVE CHANGES");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -239,7 +235,6 @@ public class UploadData extends javax.swing.JFrame {
 
     private void btnCleanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCleanActionPerformed
         // TODO add your handling code here:
-        txtClientNumber.setText("");
         txtName.setText("");
         txtBreed.setText("");
         txtColor.setText("");
@@ -255,6 +250,7 @@ public class UploadData extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+
         String petName = txtName.getText();
         String breed = txtBreed.getText();
         String color = txtColor.getText();
@@ -266,13 +262,16 @@ public class UploadData extends javax.swing.JFrame {
         String allergic = (String) cmbAllergic.getSelectedItem();
         String specialAttention = (String) cmbSpecialAttention.getSelectedItem();
 
-        control.save(petName, breed, color, observations, ownerName, ownerPhoneNumber, allergic, specialAttention);
+        control.modifyPet(pet, petName, breed, color, observations, ownerName, ownerPhoneNumber, allergic, specialAttention);
+        showMessage("Edited Succesufully", "Info", "Edit done");
 
-        JOptionPane optionPane = new JOptionPane("saved");
-        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
-        JDialog dialog = optionPane.createDialog("successfully saved");
-        dialog.setAlwaysOnTop(true);
-        dialog.setVisible(true);
+        ViewData screen = new ViewData();
+        screen.setVisible(true);
+        screen.setLocationRelativeTo(null);
+        
+        //close window
+        this.dispose();        
+        
     }//GEN-LAST:event_btnSaveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -282,7 +281,6 @@ public class UploadData extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbSpecialAttention;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -295,11 +293,51 @@ public class UploadData extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField20;
     private javax.swing.JLabel title;
     private javax.swing.JTextField txtBreed;
-    private javax.swing.JTextField txtClientNumber;
     private javax.swing.JTextField txtColor;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtObservations;
     private javax.swing.JTextField txtOwnerName;
     private javax.swing.JTextField txtOwnerPhoneNumber;
     // End of variables declaration//GEN-END:variables
+
+    private void uploadData(int num_client) {
+
+        this.pet = control.getPet(num_client);
+
+        txtName.setText(pet.getDog_name());
+        txtBreed.setText(pet.getBreed());
+        txtColor.setText(pet.getColor());
+        txtObservations.setText(pet.getObservations());
+        txtOwnerName.setText(pet.getOwner().getName());
+        txtOwnerPhoneNumber.setText(pet.getOwner().getPhone_nomber());
+
+        if (pet.getAllergic().equals("yes")) {
+            cmbAllergic.setSelectedIndex(1);
+        } else {
+            if (pet.getAllergic().equals("no")) {
+                cmbAllergic.setSelectedIndex(2);
+            }
+        }
+
+        if (pet.getSpecial_attention().equals("yes")) {
+            cmbSpecialAttention.setSelectedIndex(1);
+        } else {
+            if (pet.getSpecial_attention().equals("no")) {
+                cmbSpecialAttention.setSelectedIndex(2);
+            }
+        }
+
+    }
+
+    public void showMessage(String message, String type, String title) {
+        JOptionPane optionPane = new JOptionPane(message);
+        if (type.equals("Info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (type.equals("Error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(title);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+    }
 }
